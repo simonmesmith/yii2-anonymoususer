@@ -1,0 +1,22 @@
+{
+    "name": "simonmesmith/yii2-anonymoususer",
+    "description": "A Yii2 extension for tracking anonymous users.",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Smith",
+            "email": "simon@simonsmith.ca"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+		"yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\simonmesmith\\anonymoususer\\": ""
+        }
+    }
+}
