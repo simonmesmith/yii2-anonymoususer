@@ -1,10 +1,10 @@
 <?php
 
 namespace simonmesmith\anonymoususer;
-use simonmesmith\anonymoususer\models;
+use simonmesmith\anonymoususer\models\AnonymousUser;
 use Yii;
 
-class AnonymousUser extends \yii\base\component
+class AnonymousUserComponent extends \yii\base\component
 {
 
 	/**
@@ -29,7 +29,7 @@ class AnonymousUser extends \yii\base\component
 	private function getAnonymousUser(){
 		$anonymousUserId = $this->getCookie(); // Attempt to get an anonymous user ID cookie
 		if($anonymousUserId){ // If we found an anonymous user ID in the cookie...
-			$model = AnonymousUser::find()->where('id=:id', 'id' => $anonymousUserId); // Get the data for the existing anonymous user
+			$model = AnonymousUser::find()->where('id=:id', ['id' => $anonymousUserId])->one(); // Get the data for the existing anonymous user
 		}else{ // If we found no anonymous user ID cookie...
 			$model = new AnonymousUser; // Create a new anonymous user object
 			$model->ip_address = Yii::$app->request->getUserIP(); // Add the IP address
@@ -64,7 +64,7 @@ class AnonymousUser extends \yii\base\component
 		$anonymousUserId = null;
 		$cookie = Yii::$app->request->cookies->getValue('anonymous_user_id');
 		if(isset($cookie)){
-			$anonymousUserId = $cookie->value;
+			$anonymousUserId = $cookie;
 		}
 		return($anonymousUserId);	
 	}
